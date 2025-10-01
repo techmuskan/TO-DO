@@ -23,12 +23,6 @@ An interactive **To-Do List App** built with **React.js**, featuring add, edit, 
 
 ---
 
-## 📸 Screenshots
-
-(Add screenshots or GIFs of your app here after running it locally)
-
----
-
 ## 📂 Project Setup
 
 1. **Clone the repository**
@@ -58,7 +52,7 @@ An interactive **To-Do List App** built with **React.js**, featuring add, edit, 
 5. Open in browser at:
 
    ```
-   http://localhost:3000
+   http://localhost:5173
    ```
 
 ---
@@ -92,9 +86,4 @@ Feel free to fork this repo and submit a pull request.
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
 
