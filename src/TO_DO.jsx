@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";   // 👈 import uuid
 import './TO_DO.css'
 
 export default function TO_DO() {
   const [tasks, setTasks] = useState([]);   
   const [newTask, setNewTask] = useState(""); 
   const [isEditing, setIsEditing] = useState(false); 
-  const [editIndex, setEditIndex] = useState(null);  
+  const [editId, setEditId] = useState(null);  
   const inputRef = useRef(null);
 
   // Autofocus input when editing
@@ -18,40 +19,37 @@ export default function TO_DO() {
   // add a new task
   const addTask = () => {
     if (newTask.trim() === "") return; 
-    setTasks([...tasks, { text: newTask, completed: false }]);
+    const newItem = { id: uuidv4(), text: newTask, completed: false }; // 👈 UUID assigned
+    setTasks(prev => [...prev, newItem]);
     setNewTask(""); 
   };
 
-  // delete a task with fade-out effect
-  const deleteTask = (index) => {
-    const updated = [...tasks];
-    updated.splice(index, 1);
-    setTasks(updated);
+  // delete a task by id
+  const deleteTask = (id) => {
+    setTasks(prev => prev.filter(task => task.id !== id));
   };
 
-  // start editing a task
-  const editTask = (index) => {
+  // start editing a task by id
+  const editTask = (id) => {
+    const task = tasks.find(t => t.id === id);
+    if (!task) return;
     setIsEditing(true);
-    setEditIndex(index);
-    setNewTask(tasks[index].text); 
+    setEditId(id);
+    setNewTask(task.text); 
   };
 
-  // update the edited task
+  // update the edited task by id
   const updateTask = () => {
-    if (newTask.trim() === "") return;
-    const updatedTasks = [...tasks];
-    updatedTasks[editIndex].text = newTask;
-    setTasks(updatedTasks);
+    if (newTask.trim() === "" || !editId) return;
+    setTasks(prev => prev.map(t => t.id === editId ? { ...t, text: newTask } : t));
     setNewTask("");
     setIsEditing(false);
-    setEditIndex(null);
+    setEditId(null);
   };
 
-  // toggle completed status
-  const toggleComplete = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
+  // toggle completed status by id
+  const toggleComplete = (id) => {
+    setTasks(prev => prev.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
   };
 
   return (
@@ -80,23 +78,23 @@ export default function TO_DO() {
           <div className="empty">No tasks yet. Add one above! 🚀</div>
         ) : (
           <ul>
-            {tasks.map((task, index) => (
-              <li key={index} className={`${task.completed ? "completed" : ""} animate`}>
+            {tasks.map((task) => (
+              <li key={task.id} className={`${task.completed ? "completed" : ""} animate`}>
                 <span className="task-text">{task.text}</span>
                 <div className="btn-group">
                   <button 
                     className="mark-complete"
-                    onClick={() => toggleComplete(index)}>
+                    onClick={() => toggleComplete(task.id)}>
                     {task.completed ? "Undo" : "Complete"}
                   </button>
                   <button 
                     className="edit-btn"
-                    onClick={() => editTask(index)}>
+                    onClick={() => editTask(task.id)}>
                     Edit
                   </button>
                   <button 
                     className="delete-btn"
-                    onClick={() => deleteTask(index)}>
+                    onClick={() => deleteTask(task.id)}>
                     Delete
                   </button>
                 </div>
