@@ -1,12 +1,100 @@
-# React + Vite
+# 📝 Interactive To-Do App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive **To-Do List App** built with **React.js**, featuring add, edit, update, and delete functionalities. The app is designed with a user-friendly UI and responsive layout.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+* ➕ Add new tasks
+* ✏️ Edit existing tasks
+* ✅ Mark tasks as completed
+* 🔄 Update tasks seamlessly
+* ❌ Delete tasks
+* 🎨 Interactive and responsive UI
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+* **React.js** – Frontend library
+* **CSS3** – Styling and responsiveness
+* **JavaScript (ES6+)** – Logic handling
+
+---
+
+## 📸 Screenshots
+
+(Add screenshots or GIFs of your app here after running it locally)
+
+---
+
+## 📂 Project Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/your-username/todo-app.git
+   ```
+
+2. **Navigate into the project folder**
+
+   ```bash
+   cd todo-app
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server**
+
+   ```bash
+   npm start
+   ```
+
+5. Open in browser at:
+
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## 📦 Folder Structure
+
+```
+todo-app/
+│-- src/
+│   │-- App.js
+│   │-- TO_DO.jsx
+│   │-- App.css
+│-- package.json
+│-- README.md
+```
+
+---
+
+## 🌟 Future Enhancements
+
+* Add local storage support
+* Dark/Light mode toggle
+* Task categories and filters
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to fork this repo and submit a pull request.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
