@@ -1,0 +1,261 @@
+/* App.css - styles for TO_DO component */
+
+:root{
+  --bg: #f6f8fa;
+  --card: #ffffff;
+  --accent: #4f46e5; /* indigo-ish */
+  --muted: #6b7280;
+  --danger: #ef4444;
+  --success: #10b981;
+  --shadow: 0 6px 18px rgba(15,23,42,0.08);
+  --radius: 12px;
+  --gap: 12px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App wrapper */
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+/* Card */
+.App .container-card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+/* Header */
+.App h1 {
+  margin: 0 0 18px 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.2px;
+  color: #0b1220;
+}
+
+/* Input row */
+.container {
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.container input[type="text"]{
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e6e9ef;
+  font-size: 0.95rem;
+  outline: none;
+  transition: box-shadow .15s ease, border-color .15s ease;
+  background: #fbfdff;
+}
+
+.container input[type="text"]:focus{
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(79,70,229,0.08);
+}
+
+/* Add button */
+.container button {
+  padding: 10px 14px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 72px;
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s ease;
+  box-shadow: 0 6px 14px rgba(79,70,229,0.12);
+}
+
+.container button:active{ transform: translateY(1px); }
+.container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Task list */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(0,0,0,0.01), transparent);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid #eef2ff;
+  font-size: 0.98rem;
+  gap: 12px;
+}
+
+/* Task text */
+li .task-text {
+  flex: 1;
+  margin-right: 12px;
+  word-break: break-word;
+}
+
+/* Delete button */
+li button {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .12s ease, transform .08s ease;
+}
+
+li button:hover{
+  background: rgba(239,68,68,0.06);
+  transform: translateY(-1px);
+}
+
+/* Optional completed state (strike-through + dim) */
+li.completed .task-text {
+  text-decoration: line-through;
+  color: #9ca3af; /* muted */
+  opacity: 0.85;
+}
+
+/* Small helper: mark complete button (if added later) */
+.mark-complete {
+  margin-right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--success);
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 18px;
+  border-radius: 10px;
+  background: rgba(15,23,42,0.02);
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .App {
+    padding: 28px 12px;
+  }
+  .App .container-card {
+    padding: 18px;
+  }
+  .container button { min-width: 64px; padding: 10px; }
+  li { padding: 10px; font-size: 0.95rem; }
+}
+
+/* Completed task style (already in your CSS) */
+li.completed .task-text {
+  text-decoration: line-through;
+  color: #9ca3af;
+  opacity: 0.85;
+}
+
+/* Complete button */
+.mark-complete {
+  margin-right: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--success);
+  transition: background .12s ease, transform .08s ease;
+}
+
+.mark-complete:hover {
+  background: rgba(16,185,129,0.08);
+  transform: translateY(-1px);
+}
+
+/* Animate task list items */
+li.animate {
+  animation: fadeIn 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Smooth hover on tasks */
+li:hover {
+  transform: scale(1.01);
+  background: rgba(79,70,229,0.05);
+}
+
+/* Input focus glow */
+.container input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(79,70,229,0.4);
+}
+
+/* Button glow effects */
+.add-btn, .update-btn {
+  background: var(--accent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.add-btn:hover, .update-btn:hover {
+  box-shadow: 0 4px 12px rgba(79,70,229,0.4);
+  transform: translateY(-1px);
+}
+
+/* Delete button animation */
+.delete-btn:hover {
+  background: rgba(239,68,68,0.12);
+  transform: scale(1.05);
+}
+
+/* Edit button animation */
+.edit-btn:hover {
+  background: rgba(79,70,229,0.12);
+  transform: scale(1.05);
+}
+
+/* Complete button animation */
+.mark-complete:hover {
+  background: rgba(16,185,129,0.12);
+  transform: scale(1.05);
+}
+
+/* Button group spacing */
+.btn-group {
+  display: flex;
+  gap: 6px;
+}
